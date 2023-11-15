@@ -18,7 +18,11 @@ public class IndividualOrder {
         String menuName = orderDTO.getMenuName();
         int quantity = orderDTO.getQuantity();
 
-        if (!isValidOrder(menuName, quantity) || isDuplicate(menuName)) {
+        if (!isValidOrder(menuName, quantity)) {
+            throw new IllegalArgumentException(INVALID_ORDER_ERROR);
+        }
+
+        if (isDuplicate(menuName)) {
             throw new IllegalArgumentException(INVALID_ORDER_ERROR);
         }
 
