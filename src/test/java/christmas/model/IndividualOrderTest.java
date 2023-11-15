@@ -91,4 +91,21 @@ public class IndividualOrderTest {
         assertTrue(order.checkBeverageOrder(beverageOrderDTO));
         assertFalse(order.checkBeverageOrder(nonBeverageOrderDTO));
     }
+
+    @Test
+    void testMaxOrderLimitWithExceededOrder() {
+        // 메뉴와 주문 생성
+        RestaurantMenu menu = new RestaurantMenu();
+        IndividualOrder order = new IndividualOrder(menu);
+
+        // 최대 주문 개수 초과하는 주문을 여러 번 추가
+        for (int i = 0; i < 21; i++) {
+            OrderDTO orderDTO = new OrderDTO("티본스테이크", 1);
+            order.addItemToOrder(orderDTO);
+        }
+
+        // 최대 주문 개수 초과하는 주문을 추가하면 예외가 발생해야 함
+        OrderDTO exceededOrderDTO = new OrderDTO("제로콜라", 1);
+        assertThrows(IllegalArgumentException.class, () -> order.addItemToOrder(exceededOrderDTO));
+    }
 }
