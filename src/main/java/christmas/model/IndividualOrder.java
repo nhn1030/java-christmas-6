@@ -1,6 +1,7 @@
 package christmas.model;
 
 import christmas.dto.MenuDTO;
+import christmas.dto.OrderDTO;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -13,13 +14,14 @@ public class IndividualOrder {
         this.menu = menu;
     }
 
-    public void addItemToOrder(String menuName, int quantity) {
-        if (!isValidOrder(menuName, quantity)) {
+    public void addItemToOrder(OrderDTO orderDTO) {
+        String menuName = orderDTO.getMenuName();
+        int quantity = orderDTO.getQuantity();
+
+        if (!isValidOrder(menuName, quantity) || isDuplicate(menuName)) {
             throw new IllegalArgumentException(INVALID_ORDER_ERROR);
         }
-        if (isDuplicate(menuName)) {
-            throw new IllegalArgumentException(INVALID_ORDER_ERROR);
-        }
+
         orderedItems.put(menuName, quantity);
     }
 
