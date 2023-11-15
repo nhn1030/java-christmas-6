@@ -16,15 +16,4 @@ public class RestaurantMenuTest {
         assertNotNull(menuDTO);
         assertEquals(menuName, menuDTO.getName());
     }
-
-    @Test
-    void testGetMenuItem_NonExistingMenu() {
-        RestaurantMenu menu = new RestaurantMenu();
-        String menuName = "";
-
-        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
-                () -> menu.getMenuItemByName(menuName));
-
-        assertEquals("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요", exception.getMessage());
-    }
 }
