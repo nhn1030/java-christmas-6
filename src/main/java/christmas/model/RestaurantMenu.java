@@ -31,4 +31,10 @@ public class RestaurantMenu {
         menuItems.put("레드와인", new MenuDTO("레드와인", 60000));
         menuItems.put("샴페인", new MenuDTO("샴페인", 25000));
     }
+    public MenuDTO getMenuItemByName(String menuName) {
+        if (!menuItems.containsKey(menuName)) {
+            throw new IllegalArgumentException("[ERROR] 존재하지 않는 메뉴입니다.");
+        }
+        return menuItems.get(menuName);
+    }
 }
