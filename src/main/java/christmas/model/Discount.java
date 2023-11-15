@@ -11,7 +11,8 @@ public class Discount {
         DAILY_INCREASE(100),
         MAX_DISCOUNT(3400),
         DAYS_OFFSET(1),
-        WEEKDAY_DESSERT_DISCOUNT(2023);
+        WEEKDAY_DESSERT_DISCOUNT(2023),
+        WEEKEND_DESSERT_DISCOUNT(2023);
 
         private final int value;
 
@@ -32,6 +33,13 @@ public class Discount {
     public static int weekdayDessertDiscount(int numberOfDessert, LocalDate visitDate) {
         if (isWeekday(visitDate.getDayOfWeek())) {
             return numberOfDessert * DiscountConstants.WEEKDAY_DESSERT_DISCOUNT.value;
+        }
+        return 0;
+    }
+
+    public static int weekendMainDiscount(int numberOfMain, LocalDate visitDate) {
+        if (isWeekend(visitDate.getDayOfWeek())) {
+            return numberOfMain * DiscountConstants.WEEKEND_DESSERT_DISCOUNT.value;
         }
         return 0;
     }
