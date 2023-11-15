@@ -37,7 +37,7 @@ public class Discount {
         return 0;
     }
 
-    public static int weekendMainDiscount(int numberOfMain, LocalDate visitDate) {
+    public static int weekendMenuDiscount(int numberOfMain, LocalDate visitDate) {
         if (isWeekend(visitDate.getDayOfWeek())) {
             return numberOfMain * DiscountConstants.WEEKEND_DESSERT_DISCOUNT.value;
         }
