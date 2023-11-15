@@ -20,5 +20,6 @@ public class IndividualOrderTest {
         int expectedTotalPrice = menuDTO.getPrice() * OrderQuantity;
 
         assertEquals(expectedTotalPrice, order.calculateTotalPrice());
+        assertNotEquals(30000, order.calculateTotalPrice());
     }
 }
