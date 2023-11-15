@@ -30,23 +30,16 @@ public class IndividualOrderTest {
         assertEquals("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.", exception.getMessage());
     }
 
+    @Test
+    void testAddItemToOrder_DuplicateMenu() {
+        // 중복된 입력 검증
+        String menuName = "티본스테이크";
+        int quantity = 1;
+        order.addItemToOrder(menuName, quantity);
 
-//    @Test
-//    void testCalculateTotalPrice() {
-//        IndividualOrder order = new IndividualOrder();
-//
-//        // 가격이 일치하는지 확인할 메뉴
-//        String matchMenuName = "티본스테이크";
-//        int OrderQuantity = 2;
-//
-//        // 메뉴를 주문에 추가
-//        order.addItemToOrder(matchMenuName, OrderQuantity);
-//
-//        // 해당하는 메뉴의 menuDTO를 가져와 주문가격이 일치하는 지 확인
-//        MenuDTO menuDTO = new RestaurantMenu().getMenuItemByName(matchMenuName);
-//        int expectedTotalPrice = menuDTO.getPrice() * OrderQuantity;
-//
-//        assertEquals(expectedTotalPrice, order.calculateTotalPrice());
-//        assertNotEquals(30000, order.calculateTotalPrice());
-//    }
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
+                () -> order.addItemToOrder(menuName, quantity));
+
+        assertEquals("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.", exception.getMessage());
+    }
 }
