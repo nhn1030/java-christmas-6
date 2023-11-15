@@ -4,6 +4,20 @@ import christmas.dto.MenuDTO;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 public class IndividualOrderTest {
+    public IndividualOrder order = new IndividualOrder();
+
+    @Test
+    void testAddItemToOrder_NotExistingMenu() {
+        // 존재하지 않는 메뉴 주문
+        String nonExistingMenuName = "존재하지않는메뉴";
+        int quantity = 1;
+
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
+                () -> order.addItemToOrder(nonExistingMenuName, quantity));
+
+        assertEquals("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.", exception.getMessage());
+    }
+
     @Test
     void testCalculateTotalPrice() {
         IndividualOrder order = new IndividualOrder();
