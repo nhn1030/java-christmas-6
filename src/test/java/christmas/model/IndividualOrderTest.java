@@ -1,7 +1,6 @@
 package christmas.model;
 
 import christmas.dto.OrderDTO;
-import java.util.Map;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -48,5 +47,27 @@ public class IndividualOrderTest {
                 () -> order.addItemToOrder(new OrderDTO(menuName, quantity)));
 
         assertEquals("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.", exception.getMessage());
+    }
+
+    @Test
+    void testCalculateTotalPrice() {
+        // 메뉴와 주문 생성
+        RestaurantMenu menu = new RestaurantMenu();
+        IndividualOrder order = new IndividualOrder(menu);
+
+        // 주문 추가
+        OrderDTO orderDTO1 = new OrderDTO("티본스테이크", 3);
+        OrderDTO orderDTO2 = new OrderDTO("바비큐립", 2);
+        OrderDTO orderDTO3 = new OrderDTO("시저샐러드", 1);
+
+        order.addItemToOrder(orderDTO1);
+        order.addItemToOrder(orderDTO2);
+        order.addItemToOrder(orderDTO3);
+
+        // 주문된 항목의 총 가격 계산
+        int totalPrice = order.calculateTotalPrice();
+
+        // 예상 가격과 일치하는지 확인
+        assertEquals(281000, totalPrice);
     }
 }
