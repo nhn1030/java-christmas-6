@@ -25,6 +25,6 @@ public class RestaurantMenuTest {
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
                 () -> menu.getMenuItemByName(menuName));
 
-        assertEquals("[ERROR] 존재하지 않는 메뉴입니다.", exception.getMessage());
+        assertEquals("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요", exception.getMessage());
     }
 }
