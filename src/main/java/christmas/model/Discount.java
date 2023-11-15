@@ -2,10 +2,11 @@ package christmas.model;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.Month;
 import org.assertj.core.util.DateUtil;
 
 public class Discount {
-
+    private static final int CHRISTMAS_DAY = 25;
     public enum DiscountConstants {
         BASE_DISCOUNT(1000),
         DAILY_INCREASE(100),
@@ -59,4 +60,10 @@ public class Discount {
     private static boolean isWeekend(DayOfWeek dayOfWeek) {
         return dayOfWeek.equals(DayOfWeek.FRIDAY) || dayOfWeek.equals(DayOfWeek.SATURDAY);
     }
+
+    private static boolean isStarDate(LocalDate visitDate) {
+        return visitDate.getMonth() == Month.DECEMBER &&
+                (visitDate.getDayOfWeek() == DayOfWeek.SUNDAY || visitDate.getDayOfMonth() == CHRISTMAS_DAY);
+    }
+
 }
