@@ -3,7 +3,6 @@ package christmas.model;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.Month;
-import org.assertj.core.util.DateUtil;
 
 public class Discount {
     private static final int CHRISTMAS_DAY = 25;
@@ -23,7 +22,6 @@ public class Discount {
         }
     }
 
-    // 크리스마스 할인 계산 메서드
     public static int christmasDiscount(LocalDate visitDate) {
         int daysUntilChristmas = visitDate.getDayOfMonth() - DiscountConstants.DAYS_OFFSET.value;
         int discountAmount = DiscountConstants.BASE_DISCOUNT.value +
