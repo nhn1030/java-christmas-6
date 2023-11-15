@@ -30,6 +30,6 @@ public class IndividualOrder {
     }
 
     private boolean isDuplicate(String menuName) {
-        return orderedItems.containsKey(menuName);
+        return !orderedItems.containsKey(menuName);
     }
 }
