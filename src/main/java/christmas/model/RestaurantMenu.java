@@ -33,7 +33,7 @@ public class RestaurantMenu {
     }
     public MenuDTO getMenuItemByName(String menuName) {
         if (!menuItems.containsKey(menuName)) {
-            throw new IllegalArgumentException("[ERROR] 존재하지 않는 메뉴입니다.");
+            throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요");
         }
         return menuItems.get(menuName);
     }
