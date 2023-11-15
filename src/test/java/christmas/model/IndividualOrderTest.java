@@ -1,11 +1,18 @@
 package christmas.model;
 
-import christmas.dto.MenuDTO;
 import christmas.dto.OrderDTO;
+import java.util.Map;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 public class IndividualOrderTest {
-    IndividualOrder order = new IndividualOrder(new RestaurantMenu());
+    private IndividualOrder order;
+
+    @BeforeEach
+    void setUp() {
+        RestaurantMenu menu = new RestaurantMenu();
+        order = new IndividualOrder(menu);
+    }
 
     @Test
     void testAddItemToOrder_NotExistingMenu() {
