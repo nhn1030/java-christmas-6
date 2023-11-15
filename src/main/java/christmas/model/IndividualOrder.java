@@ -17,10 +17,17 @@ public class IndividualOrder {
         if (!isValidOrder(menuName, quantity)) {
             throw new IllegalArgumentException(INVALID_ORDER_ERROR);
         }
+        if (isDuplicate(menuName)) {
+            throw new IllegalArgumentException(INVALID_ORDER_ERROR);
+        }
         orderedItems.put(menuName, quantity);
     }
 
     private boolean isValidOrder(String menuName, int quantity) {
         return menu.getMenuItemByName(menuName) != null && quantity > 0;
+    }
+
+    private boolean isDuplicate(String menuName) {
+        return orderedItems.containsKey(menuName);
     }
 }
