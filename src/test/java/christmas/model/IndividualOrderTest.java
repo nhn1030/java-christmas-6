@@ -1,5 +1,6 @@
 package christmas.model;
 
+import christmas.dto.MenuDTO;
 import christmas.dto.OrderDTO;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -77,5 +78,17 @@ public class IndividualOrderTest {
 
         // 예상 가격과 일치하는지 확인
         assertEquals(281000, totalPrice);
+    }
+
+    @Test
+    void testCheckBeverageOrder() {
+        RestaurantMenu menu = new RestaurantMenu();
+        IndividualOrder order = new IndividualOrder(menu);
+
+        OrderDTO beverageOrderDTO = new OrderDTO("제로콜라", 2);
+        OrderDTO nonBeverageOrderDTO = new OrderDTO("티본스테이크", 1);
+
+        assertTrue(order.checkBeverageOrder(beverageOrderDTO));
+        assertFalse(order.checkBeverageOrder(nonBeverageOrderDTO));
     }
 }
