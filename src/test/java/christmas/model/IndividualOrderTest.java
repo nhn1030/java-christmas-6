@@ -9,11 +9,25 @@ public class IndividualOrderTest {
     @Test
     void testAddItemToOrder_NotExistingMenu() {
         // 존재하지 않는 메뉴 주문
-        String nonExistingMenuName = "존재하지않는메뉴";
+        String nonExistingMenuName = "아이스아메리카노";
         int quantity = 1;
 
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
                 () -> order.addItemToOrder(nonExistingMenuName, quantity));
+
+        assertEquals("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.", exception.getMessage());
+    }
+
+    @Test
+    void testAddItemToOrder_InvalidQuantity() {
+        IndividualOrder order = new IndividualOrder();
+
+        // 유효하지 않은 메뉴 주문 (음수 개수)
+        String invalidMenuName = "티본스테이크";
+        int invalidQuantity = -1;
+
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
+                () -> order.addItemToOrder(invalidMenuName, invalidQuantity));
 
         assertEquals("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.", exception.getMessage());
     }
