@@ -25,4 +25,18 @@ public class DiscountTest {
         int menuDiscount = Discount.weekendMenuDiscount(2, fridayDate);
         assertEquals(4046, menuDiscount);
     }
+
+    @Test
+    void testSpecialDiscount_WithStar() {
+        LocalDate starDate = LocalDate.of(2023, 12, 25);
+        int specialDiscount = Discount.specialDiscount(starDate);
+        assertEquals(1000, specialDiscount);
+    }
+
+    @Test
+    void testSpecialDiscount_WithoutStar() {
+        LocalDate regularDate = LocalDate.of(2023, 12, 10);
+        int specialDiscount = Discount.specialDiscount(regularDate);
+        assertEquals(0, specialDiscount);
+    }
 }
