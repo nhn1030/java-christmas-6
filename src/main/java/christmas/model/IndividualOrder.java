@@ -9,6 +9,8 @@ public class IndividualOrder {
     private static final String INVALID_ORDER_ERROR = "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.";
     private static final String DUPLICATE_ORDER_ERROR = "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.";
     private static final String ONLY_BEVERAGE_ORDER_ERROR = "[ERROR] 음료만 주문하는 것은 불가능 합니다. 다시 입력해 주세요.";
+    private static final String MAX_ORDER_LIMIT_ERROR = "[ERROR] 메뉴는 한 번에 최대 20개까지만 주문할 수 있습니다 다시 입력해 주세요.";
+    private static final int MAX_ORDER_LIMIT = 20;
     private final Map<String, Integer> orderedItems = new HashMap<>();
     private final RestaurantMenu menu;
 
@@ -20,6 +22,10 @@ public class IndividualOrder {
     }
 
     public void addItemToOrder(OrderDTO orderDTO) {
+        if (orderedItems.size() >= MAX_ORDER_LIMIT) {
+            throw new IllegalArgumentException(MAX_ORDER_LIMIT_ERROR);
+        }
+
         String menuName = orderDTO.getMenuName();
         int quantity = orderDTO.getQuantity();
 
