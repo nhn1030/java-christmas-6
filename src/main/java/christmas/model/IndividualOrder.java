@@ -11,6 +11,9 @@ public class IndividualOrder {
     private final RestaurantMenu menu;
 
     public IndividualOrder(RestaurantMenu menu) {
+        if (menu == null) {
+            throw new IllegalArgumentException("Menu cannot be null.");
+        }
         this.menu = menu;
     }
 
@@ -22,12 +25,29 @@ public class IndividualOrder {
             throw new IllegalArgumentException(INVALID_ORDER_ERROR);
         }
 
-        if (isDuplicate(menuName)) {
+        else if (!isDuplicate(menuName)) {
             throw new IllegalArgumentException(INVALID_ORDER_ERROR);
         }
 
         orderedItems.put(menuName, quantity);
     }
+
+    public int calculateTotalPrice() {
+        int totalPrice = 0;
+        for (Map.Entry<String, Integer> entry : orderedItems.entrySet()) {
+            String menuName = entry.getKey();
+            int quantity = entry.getValue();
+
+            MenuDTO menuDTO = menu.getMenuItemByName(menuName);
+            int menuPrice = menuDTO.getPrice();
+
+            totalPrice += menuPrice * quantity;
+        }
+
+        return totalPrice;
+    }
+
+
 
     private boolean isValidOrder(String menuName, int quantity) {
         return menu.getMenuItemByName(menuName) != null && quantity > 0;
