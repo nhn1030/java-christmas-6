@@ -1,6 +1,7 @@
 package christmas.model;
 
 import christmas.dto.MenuDTO;
+import christmas.dto.OrderDTO;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 public class IndividualOrderTest {
@@ -13,7 +14,7 @@ public class IndividualOrderTest {
         int quantity = 1;
 
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
-                () -> order.addItemToOrder(nonExistingMenuName, quantity));
+                () -> order.addItemToOrder(new OrderDTO(nonExistingMenuName, quantity)));
 
         assertEquals("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.", exception.getMessage());
     }
@@ -25,7 +26,7 @@ public class IndividualOrderTest {
         int invalidQuantity = -1;
 
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
-                () -> order.addItemToOrder(invalidMenuName, invalidQuantity));
+                () -> order.addItemToOrder(new OrderDTO(invalidMenuName, invalidQuantity)));
 
         assertEquals("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.", exception.getMessage());
     }
@@ -35,10 +36,9 @@ public class IndividualOrderTest {
         // 중복된 입력 검증
         String menuName = "티본스테이크";
         int quantity = 1;
-        order.addItemToOrder(menuName, quantity);
 
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
-                () -> order.addItemToOrder(menuName, quantity));
+                () -> order.addItemToOrder(new OrderDTO(menuName, quantity)));
 
         assertEquals("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.", exception.getMessage());
     }
