@@ -37,6 +37,6 @@ public class Discount {
     }
 
     private static boolean isWeekday(DayOfWeek dayOfWeek) {
-        return !dayOfWeek.equals(DayOfWeek.SATURDAY) && !dayOfWeek.equals(DayOfWeek.SUNDAY);
+        return !dayOfWeek.equals(DayOfWeek.FRIDAY) && !dayOfWeek.equals(DayOfWeek.SATURDAY);
     }
 }
