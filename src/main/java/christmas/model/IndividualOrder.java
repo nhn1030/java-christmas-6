@@ -14,13 +14,13 @@ public class IndividualOrder {
     }
 
     public void addItemToOrder(String menuName, int quantity) {
-        if (menu.getMenuItemByName(menuName) == null) {
-            throw new IllegalArgumentException(INVALID_ORDER_ERROR);
-        }
-
-        if (quantity <= 0) {
+        if (!isValidOrder(menuName, quantity)) {
             throw new IllegalArgumentException(INVALID_ORDER_ERROR);
         }
         orderedItems.put(menuName, quantity);
+    }
+
+    private boolean isValidOrder(String menuName, int quantity) {
+        return menu.getMenuItemByName(menuName) != null && quantity > 0;
     }
 }
