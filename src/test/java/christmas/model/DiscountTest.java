@@ -35,7 +35,7 @@ public class DiscountTest {
 
     @Test
     void testSpecialDiscount_WithoutStar() {
-        LocalDate regularDate = LocalDate.of(2023, 12, 10);
+        LocalDate regularDate = LocalDate.of(2023, 12, 7);
         int specialDiscount = Discount.specialDiscount(regularDate);
         assertEquals(0, specialDiscount);
     }
