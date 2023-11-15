@@ -11,4 +11,11 @@ public class DiscountTest {
         int discountDecember25 = Discount.christmasDiscount(december25);
         assertEquals(3400, discountDecember25);
     }
+
+    @Test
+    void testWeekdayDessertDiscount() {
+        LocalDate weekdayDate = LocalDate.of(2023, 12, 4);
+        int desertDiscount = Discount.weekdayDessertDiscount(3, weekdayDate);
+        assertEquals(6069, desertDiscount);
+    }
 }
